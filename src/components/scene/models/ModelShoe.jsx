@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { useRef } from "react";
 
 function ModelShoe({...props}){
   const { nodes, materials } = useGLTF('/model.glb');
