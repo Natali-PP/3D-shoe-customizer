@@ -7,19 +7,11 @@ import ModelShoe from './models/ModelShoe.jsx'
 import { useControls } from 'leva'
 import {CustomizationContext} from '../../context/CustomizationContex.jsx';
 
-import { Button } from '@chakra-ui/react';
-
 function Scene(){
 
   const {onOpenModal} = useContext( CustomizationContext );
   return(
-    <>
-      <Button 
-            //ref={btnRef} 
-        onClick={onOpenModal}
-        >
-            Open
-        </Button>
+
     <Canvas camera={{position:[0,0.5,1.05]}}>
       <Suspense fallback={<p>Loading...</p>} />
         <axesHelper />
@@ -36,7 +28,6 @@ function Scene(){
           background />
       <Suspense />
     </Canvas>
-    </>
   )
 
 }
