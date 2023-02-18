@@ -1,13 +1,21 @@
 import { useGLTF, GradientTexture } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import {CustomizationContext} from '../../../context/CustomizationContex.jsx';
 
 function ModelShoe({...props}){
   const { nodes, materials } = useGLTF('/model.glb');
   const group = useRef();
+  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal, setIsOpenModal } = useContext( CustomizationContext );
+
+  function handleClick () {
+    //onOpenModal;
+    setLayerColor('Laces');
+    setIsOpenModal(true);
+  }
   return (
     <group {...props} ref={group} dispose={null}>
-      <mesh geometry={nodes.shoe.geometry} material={materials.laces} scale={[0.5,0,0]}  />
-      <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} >
+      <mesh geometry={nodes.shoe.geometry} material={materials.laces}  onClick={handleClick}  />
+      <mesh geometry={nodes.shoe_1.geometry} material={materials.mesh} scale={[1.5,0,0]} >
 
       </mesh>
       <mesh geometry={nodes.shoe_2.geometry} material={materials.caps}/>
