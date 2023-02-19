@@ -16,7 +16,7 @@ import {
 export default function CustomizationModal(){
   //const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal } = useContext( CustomizationContext );
+  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal, layerName } = useContext( CustomizationContext );
 
   const handleChange = (event) => setLayerColor(event.target.value)
   return(
@@ -29,7 +29,7 @@ export default function CustomizationModal(){
           >
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>{layerColor}</DrawerHeader>
+              <DrawerHeader>{layerName}</DrawerHeader>
     
               <DrawerBody>
                 <Input 
