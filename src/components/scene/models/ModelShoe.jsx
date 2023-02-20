@@ -16,7 +16,6 @@ function ModelShoe({...props}){
       layerName: e.object.material.name
     }))
     console.log('Layer color',e.object.material.color, e.object.material.color.r*255)
-    setLayerColor({r:e.object.material.color.r*255,g:e.object.material.color.g*255,b:e.object.material.color.b*255,a:1})
     setIsOpenModal(true);
   }
 

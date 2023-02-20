@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import {CustomizationContext} from '../context/CustomizationContex.jsx';
 import {
   Drawer,
@@ -13,16 +13,27 @@ import {
   Heading,
   Text
 } from '@chakra-ui/react';
-import {  Circle, Wheel } from '@uiw/react-color';
+import { Wheel } from '@uiw/react-color';
 import Colorful from '@uiw/react-color-colorful';
-import { hexToRgba, rgbaToHex } from '@uiw/color-convert'
+import { hexToRgba, rgbaToHex } from '@uiw/color-convert';
+
+import Circle from '@uiw/react-color-circle';
 
 export default function CustomizationModal(){
 
-  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal, layerName, setInnerColor , innerColor, customization, setCustomization } = useContext( CustomizationContext );
+  const { isOpenModal, onOpenModal, onCloseModal, customization, setCustomization } = useContext( CustomizationContext );
   const upperCaseFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
   const handleChange = (e) => setLayerColor(e.target.value)
-  const [colorOnColorPicker, setColorOnColorPicker] = useState(rgbaToHex(layerColor));
+  const [colorOnColorPicker, setColorOnColorPicker] = useState(customization.layerColor[`${customization.layerName}`]);
+  const [colorOnCircle, setColorOnCircle] = useState('#F44E3B');
+
+  useEffect( () => {
+    setColorOnColorPicker(customization.layerColor[`${customization.layerName}`])
+  },[isOpenModal])
+
+  useEffect( () => {
+    setColorOnColorPicker(customization.layerColor[`${customization.layerName}`])
+  },[colorOnCircle])
 
   const handleColorChangeOnColorPicker = ( color) => {
     setColorOnColorPicker(color.hex);
@@ -33,7 +44,18 @@ export default function CustomizationModal(){
         [customization.layerName]:color.hex
       }
     }))
-  }
+  };
+
+  const handleColorChangeOnCircle = ( color) => {
+    setColorOnCircle(color.hex);
+    setCustomization( prevState => ({
+      ...prevState,
+      layerColor:{
+        ...prevState.layerColor,
+        [customization.layerName]:color.hex
+      }
+    }))
+  };
 
   return(
           <Drawer
@@ -50,7 +72,16 @@ export default function CustomizationModal(){
     
               <DrawerBody>
                 <Heading as='h2' size='md'>Color</Heading>
-                <Text>{`R:${layerColor.r} G:${layerColor.g} B:${layerColor.b}`}</Text>
+
+                <Text>{customization.layerColor[`${customization.layerName}`]}</Text>
+                <Circle 
+                  colors={[ '#1A0E3E', '#1F1A70', '#DB488B', '#FF83F6', '#3ED0EB' ]}
+                  color={colorOnCircle}
+                  onChange={(color) => {
+                    handleColorChangeOnCircle(color);
+                  }}
+                />
+
                 <Text>{`Color state R:${colorOnColorPicker} `}</Text>
                 {/*<Input 
                   placeholder="Type here..." 
@@ -58,7 +89,6 @@ export default function CustomizationModal(){
                   onChange={handleChange}
                 />
                 />*/}
-                {/*<Circle />*/}
                 <Colorful
                   color={colorOnColorPicker}
                   disableAlpha={"Hide"}

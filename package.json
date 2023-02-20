@@ -15,6 +15,7 @@
     "@react-three/drei": "^9.56.25",
     "@react-three/fiber": "^8.11.2",
     "@uiw/react-color": "^1.1.1",
+    "@uiw/react-color-circle": "^1.1.1",
     "framer-motion": "^9.0.4",
     "leva": "^0.9.34",
     "react": "^18.2.0",

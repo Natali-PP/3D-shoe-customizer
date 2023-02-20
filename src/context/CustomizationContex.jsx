@@ -3,11 +3,8 @@ import { useState, createContext } from 'react';
 export const CustomizationContext = createContext({});
 
 export default function CustomizationContextProvider({ children }){
-  const [layerName, setLayerName] = useState();
-  const [layerColor, setLayerColor] = useState('test');
   const [layerSize, setLayerSize] = useState();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [innerColor,setInnerColor]=useState('#ffffff');
   const [customization, setCustomization] = useState({
     layerName:'',
     layerColor:{
@@ -27,7 +24,7 @@ export default function CustomizationContextProvider({ children }){
 
   return(
     <CustomizationContext.Provider 
-      value={{layerColor,setLayerColor, isOpenModal,onOpenModal,onCloseModal, setIsOpenModal, layerName, setLayerName, layerSize,setLayerSize, innerColor, setInnerColor, customization, setCustomization}}
+      value={{isOpenModal,onOpenModal,onCloseModal, setIsOpenModal, layerSize,setLayerSize, customization, setCustomization}}
     >
       {children}
     </CustomizationContext.Provider>
