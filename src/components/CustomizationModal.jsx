@@ -145,7 +145,7 @@ export default function CustomizationModal(){
           >
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>{upperCaseFirstLetter(customization.layerName)}</DrawerHeader>
+              <DrawerHeader>{customization.layerName}</DrawerHeader>
     
               <DrawerBody>
                 <Heading as='h2' size='md'>Color</Heading>
