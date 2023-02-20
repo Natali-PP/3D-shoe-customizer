@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {CustomizationContext} from '../context/CustomizationContex.jsx';
 import {
   Drawer,
@@ -8,17 +8,33 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  //useDisclosure,
   Input,
-  Box
-} from '@chakra-ui/react'
+  Box,
+  Heading,
+  Text
+} from '@chakra-ui/react';
+import {  Circle, Wheel } from '@uiw/react-color';
+import Colorful from '@uiw/react-color-colorful';
+import { hexToRgba, rgbaToHex } from '@uiw/color-convert'
 
 export default function CustomizationModal(){
-  //const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal, layerName } = useContext( CustomizationContext );
+  const { layerColor, setLayerColor, isOpenModal, onOpenModal, onCloseModal, layerName, setInnerColor , innerColor, customization, setCustomization } = useContext( CustomizationContext );
+  const upperCaseFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
+  const handleChange = (e) => setLayerColor(e.target.value)
+  const [colorOnColorPicker, setColorOnColorPicker] = useState(rgbaToHex(layerColor));
 
-  const handleChange = (event) => setLayerColor(event.target.value)
+  const handleColorChangeOnColorPicker = ( color) => {
+    setColorOnColorPicker(color.hex);
+    setCustomization( prevState => ({
+      ...prevState,
+      layerColor:{
+        ...prevState.layerColor,
+        [customization.layerName]:color.hex
+      }
+    }))
+  }
+
   return(
           <Drawer
             isOpen={isOpenModal}
@@ -29,14 +45,27 @@ export default function CustomizationModal(){
           >
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>{layerName}</DrawerHeader>
+              <DrawerHeader>{customization.layerName}</DrawerHeader>
+
     
               <DrawerBody>
-                <Input 
+                <Heading as='h2' size='md'>Color</Heading>
+                <Text>{`R:${layerColor.r} G:${layerColor.g} B:${layerColor.b}`}</Text>
+                <Text>{`Color state R:${colorOnColorPicker} `}</Text>
+                {/*<Input 
                   placeholder="Type here..." 
                   value={layerColor}
                   onChange={handleChange}
                 />
+                />*/}
+                {/*<Circle />*/}
+                <Colorful
+                  color={colorOnColorPicker}
+                  disableAlpha={"Hide"}
+                  onChange={ (color) => handleColorChangeOnColorPicker(color)}
+                  onClick={ (e) => e.stopPropagation}
+                />
+
               </DrawerBody>
     
               <DrawerFooter>
