@@ -7,19 +7,15 @@ function ModelShoe({...props}){
   const group = useRef();
   const { setLayerColor,  setIsOpenModal, setLayerName, layerColor, innerColor, customization, setCustomization } = useContext( CustomizationContext );
 
-
   const handleClick = (e) => {
     e.stopPropagation();
-    //setLayerName(e.object.material.name.replace(/^./, str => str.toUpperCase()))
     setCustomization( prevState => ({
       ...prevState,
       layerName: e.object.material.name
-    }))
-    console.log('Layer props',e.object.scale)
+    }));
     setIsOpenModal(true);
   }
 
-  console.log('context color en model', layerColor)
 
   return (
     <group {...props} ref={group} dispose={null}>

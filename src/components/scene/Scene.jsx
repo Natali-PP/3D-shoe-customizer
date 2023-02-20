@@ -14,8 +14,8 @@ function Scene(){
 
     <Canvas camera={{position:[0,0.5,1.05]}}>
       <Suspense fallback={<p>Loading...</p>} />
-        <axesHelper />
-        <gridHelper />
+      {/*<axesHelper />
+        <gridHelper />*/}
         <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
         <directionalLight intensity={0.1} position={[100,0,50]} />
         <ModelShoe />
