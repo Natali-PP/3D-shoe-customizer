@@ -17,6 +17,48 @@ export default function CustomizationContextProvider({ children }){
       band:'#ffffff',
       patch:'#ffffff',
     },
+    layerSize:{
+      laces:{
+        x:1,
+        y:1,
+        z:1
+      },
+      mesh:{
+        x:1,
+        y:1,
+        z:1
+      },
+      caps:{
+        x:1,
+        y:1,
+        z:1
+      },
+      inner:{
+        x:1,
+        y:1,
+        z:1
+      },
+      sole:{
+        x:1,
+        y:1,
+        z:1
+      },
+      stripes:{
+        x:1,
+        y:1,
+        z:1
+      },
+      band:{
+        x:1,
+        y:1,
+        z:1
+      },
+      patch:{
+        x:1,
+        y:1,
+        z:1
+      },
+    },
   });
 
   const onOpenModal = () => setIsOpenModal(true);
