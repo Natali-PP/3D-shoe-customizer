@@ -207,8 +207,8 @@ export default function CustomizationModal(){
                     </SliderTrack>
                     <SliderThumb />
                   </Slider>
-                <Button onClick={() => setDefaultValuesForLayer(customization.layerName)}>Default size values for layer</Button>
-                <Button onClick={setDefaultValuesForModel}>Default size values for model</Button>
+                <Button variant="outline" onClick={() => setDefaultValuesForLayer(customization.layerName)}>Default size values for layer</Button>
+                <Button variant="outline" onClick={setDefaultValuesForModel}>Default size values for model</Button>
 
               </DrawerBody>
     
