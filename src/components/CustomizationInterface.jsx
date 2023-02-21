@@ -12,13 +12,17 @@ import {
   SliderMark,
   Stack,
   Flex,
+  IconButton
 } from "@chakra-ui/react";
+import { ChevronUpIcon } from '@chakra-ui/icons'
 import Colorful from "@uiw/react-color-colorful";
 import { hexToRgba, rgbaToHex } from "@uiw/color-convert";
 import Circle from "@uiw/react-color-circle";
 import "../App.css";
+import { motion, AnimatePresence } from "framer-motion"
+
 export default function CustomizationInterface() {
-  const { isOpenModal, onOpenModal, onCloseModal, customization, setCustomization } = useContext(CustomizationContext);
+  const { isOpenModal, customization, setCustomization, setIsOpenModal } = useContext(CustomizationContext);
   const [colorOnColorPicker, setColorOnColorPicker] = useState(customization.layerColor[`${customization.layerName}`]);
   const [colorOnCircle, setColorOnCircle] = useState("#1A0E3E");
   const [sliderValue, setSliderValue] = useState(0);
@@ -135,19 +139,33 @@ export default function CustomizationInterface() {
       style={{ position: "absolute", top: 0, right: "1%" }}
       p={3}
       ml={3}
-      isOpen={isOpenModal}
-      onClose={onCloseModal}
-      maxW="310px"
+      width="310px"
     >
-      <Box className="cyanGlass" mb={4} p={4}>
+      <Box className="cyanGlass" mb={4} p={4} >
+        <Flex justify='space-between' >
         <Text p={2}>Shoe Configurator</Text>
-        <Heading as="h1" size="md" p={2}>
+          {isOpenModal ? <IconButton variant="outline" colorScheme='whiteAlpha' aria-label='Collapse menu' onClick={() => setIsOpenModal(!isOpenModal)} icon={<ChevronUpIcon />} /> : null}
+        </Flex>
+        <Heading as="h1" size="lg" p={2} style={{fontFamily: 'Noto Sans Mono'}}>
           {customization.layerName ? customization.layerName : "Click on a layer to start editing!"}
         </Heading>
       </Box>
-      <Stack spacing="4" style={{ display: customization.layerName ? "flex" : "none" }}>
-        <Flex className="glass" p={8} direction="column" justify="center" align="center">
-          <Heading as="h2" size="md" py={2} ml={2} style={{ alignSelf: "start" }}>
+      <AnimatePresence>
+      {isOpenModal ?
+          <motion.div 
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto",backdropFilter: "blur(0px)", },
+              collapsed: { opacity: 0, height: 0 ,backdropFilter: "blur(10.5px)"}
+            }}
+            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+      <Stack spacing="4" 
+      >
+        <Stack className="glass"  p={8} width='290px' spacing='12px'>
+          <Heading as="h3" size="sm" py={2}  >
             Layer color
           </Heading>
           {/*<Text>{customization.layerColor[`${customization.layerName}`]}</Text>*/}
@@ -163,18 +181,18 @@ export default function CustomizationInterface() {
             disableAlpha={"Hide"}
             onChange={(color) => handleColorChangeOnColorPicker(color)}
             onClick={(e) => e.stopPropagation}
+            style={{width:'230px'}}
           />
-        </Flex>
+        </Stack>
 
-        <Box className="glass" p={8}>
-          <Heading as="h2" size="md" py={2}>
+        <Stack className="glass" p={8} width='290px' spacing='12px'>
+          <Heading as="h3" size="sm" py={2}>
             Layer size
           </Heading>
           <Text>Width</Text>
           <Slider
             aria-label="slider-height"
             defaultValue={1}
-            //defaultValue={5}
             min={0}
             max={3}
             step={0.2}
@@ -190,7 +208,6 @@ export default function CustomizationInterface() {
           <Slider
             aria-label="slider-height"
             defaultValue={1}
-            //defaultValue={5}
             min={0}
             max={3}
             step={0.2}
@@ -206,7 +223,6 @@ export default function CustomizationInterface() {
           <Slider
             aria-label="slider-width"
             defaultValue={1}
-            //defaultValue={5}
             min={0}
             max={3}
             step={0.2}
@@ -217,14 +233,17 @@ export default function CustomizationInterface() {
             </SliderTrack>
             <SliderThumb />
           </Slider>
-          <Button variant="outline" my={4} onClick={() => setDefaultValuesForLayer(customization.layerName)}>
+          <Button variant="outline" colorScheme='whiteAlpha' mt={10} onClick={() => setDefaultValuesForLayer(customization.layerName)}>
             Default values for layer
           </Button>
-          <Button variant="outline" onClick={setDefaultValuesForModel}>
+          <Button variant="outline" colorScheme='whiteAlpha' onClick={setDefaultValuesForModel}>
             Default values for model
           </Button>
-        </Box>
+        </Stack>
       </Stack>
+          </motion.div>
+      : null }
+      </AnimatePresence>
     </Box>
   );
 }

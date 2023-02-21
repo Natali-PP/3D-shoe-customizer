@@ -2,6 +2,7 @@
   height: 100vh;
   width: 100vw;
   color:#efdeed;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .App canvas{
@@ -19,12 +20,26 @@ body {
   backdrop-filter: blur( 10.5px );
   -webkit-backdrop-filter: blur( 10.5px );
   border-radius: 10px;
+  /*animation: blur-in 500ms 2s forwards;*/
+}
+
+.glass h3{
+  font-family: 'Noto Sans Mono', monospace;
 }
 .cyanGlass{
   background: rgba( 255, 0, 229, 0.15 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 10.5px );
-  -webkit-backdrop-filter: blur( 10.5px );
+  /*backdrop-filter: blur( 10.5px );
+  -webkit-backdrop-filter: blur( 10.5px );*/
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
+  /*animation: blur-in forwards;*/
+}
+@keyframes blur-in {
+  from {
+    backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(10.5px);
+  }
 }
