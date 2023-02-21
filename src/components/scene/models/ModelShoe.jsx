@@ -8,8 +8,6 @@ function ModelShoe({...props}){
   const group = useRef();
   const { setLayerColor,  setIsOpenModal, setLayerName, layerColor, innerColor, customization, setCustomization } = useContext( CustomizationContext );
 
-  //const {viewport} = useThree();
-
   const handleClick = (e) => {
     e.stopPropagation();
     setCustomization( prevState => ({

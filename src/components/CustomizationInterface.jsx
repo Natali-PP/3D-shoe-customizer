@@ -19,13 +19,16 @@ import Colorful from "@uiw/react-color-colorful";
 import { hexToRgba, rgbaToHex } from "@uiw/color-convert";
 import Circle from "@uiw/react-color-circle";
 import "../App.css";
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
+import Wheel from '@uiw/react-color-wheel';
 
 export default function CustomizationInterface() {
   const { isOpenModal, customization, setCustomization, setIsOpenModal } = useContext(CustomizationContext);
-  const [colorOnColorPicker, setColorOnColorPicker] = useState(customization.layerColor[`${customization.layerName}`]);
+  //const [colorOnColorPicker, setColorOnColorPicker] = useState(customization.layerColor[`${customization.layerName}`]);
+  const [colorOnColorPicker, setColorOnColorPicker] = useState("#e3d8d8");
   const [colorOnCircle, setColorOnCircle] = useState("#1A0E3E");
   const [sliderValue, setSliderValue] = useState(0);
+  const [hexColorPicker, setHexColorPicker] = useState("#e3d8d8");
 
   const upperCaseFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
@@ -37,7 +40,9 @@ export default function CustomizationInterface() {
     setColorOnColorPicker(customization.layerColor[`${customization.layerName}`]);
   }, [colorOnCircle]);
 
-  const handleColorChangeOnColorPicker = (color) => {
+  /*function handleColorChangeOnColorPicker(color) {
+    console.log('colorOnColorPicker',colorOnColorPicker)
+    console.log('color hex',color.hex)
     setColorOnColorPicker(color.hex);
     setCustomization((prevState) => ({
       ...prevState,
@@ -46,7 +51,19 @@ export default function CustomizationInterface() {
         [customization.layerName]: color.hex,
       },
     }));
-  };
+  };*/
+
+  function handleColorPicker(color){
+    console.log('color hex',color)
+    setHexColorPicker(color.hex);
+    setCustomization((prevState) => ({
+      ...prevState,
+      layerColor: {
+        ...prevState.layerColor,
+        [customization.layerName]: color.hex,
+      },
+    }));
+  }
 
   const handleColorChangeOnCircle = (color) => {
     setColorOnCircle(color.hex);
@@ -134,6 +151,11 @@ export default function CustomizationInterface() {
       },
     }));
   };
+
+  const heightSideBar = window.innerHeight>909 ? 'auto' : '80vh';
+  const overflowYSideBar = window.innerHeight>909 ? 'hidden' : 'scroll';
+
+
   return (
     <Box
       style={{ position: "absolute", top: 0, right: "1%" }}
@@ -157,7 +179,7 @@ export default function CustomizationInterface() {
             animate="open"
             exit="collapsed"
             variants={{
-              open: { opacity: 1, height: '80vh', overflowY:'scroll', overflowX:'hidden', },
+              open: { opacity: 1,  height: heightSideBar, overflowY:overflowYSideBar, overflowX:'hidden' },
               collapsed: { opacity: 0, height: 0 }
             }}
             transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
@@ -168,7 +190,6 @@ export default function CustomizationInterface() {
           <Heading as="h3" size="sm" py={2}  >
             Layer color
           </Heading>
-          {/*<Text>{customization.layerColor[`${customization.layerName}`]}</Text>*/}
           <Circle
             colors={["#1A0E3E", "#1F1A70", "#DB488B", "#FF83F6", "#3ED0EB"]}
             color={colorOnCircle}
@@ -177,11 +198,15 @@ export default function CustomizationInterface() {
             }}
           />
           <Colorful
-            color={colorOnColorPicker}
+            //color={colorOnColorPicker}
+            //color={customization.layerColor[`${customization.layerName}`]}
             disableAlpha={"Hide"}
-            onChange={(color) => handleColorChangeOnColorPicker(color)}
-            onClick={(e) => e.stopPropagation}
-            style={{width:'230px'}}
+            //onChange={(color) => handleColorChangeOnColorPicker(color)}
+            //onClick={(e) => e.preventDefault}
+            //style={{width:'230px'}}
+                    color={hexColorPicker}
+        onChange={(color) => {handleColorPicker(color);}}
+
           />
         </Stack>
 
