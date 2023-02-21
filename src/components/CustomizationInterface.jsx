@@ -141,7 +141,7 @@ export default function CustomizationInterface() {
       ml={3}
       width="310px"
     >
-      <Box className="cyanGlass" mb={4} p={4} >
+      <Box className="headingGlass" mb={4} p={4} >
         <Flex justify='space-between' >
         <Text p={2}>Shoe Configurator</Text>
           {isOpenModal ? <IconButton variant="outline" colorScheme='whiteAlpha' aria-label='Collapse menu' onClick={() => setIsOpenModal(!isOpenModal)} icon={<ChevronUpIcon />} /> : null}
@@ -157,8 +157,8 @@ export default function CustomizationInterface() {
             animate="open"
             exit="collapsed"
             variants={{
-              open: { opacity: 1, height: "auto",backdropFilter: "blur(0px)", },
-              collapsed: { opacity: 0, height: 0 ,backdropFilter: "blur(10.5px)"}
+              open: { opacity: 1, height: '80vh', overflowY:'scroll', overflowX:'hidden', },
+              collapsed: { opacity: 0, height: 0 }
             }}
             transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
           >

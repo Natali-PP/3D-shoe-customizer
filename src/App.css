@@ -3,6 +3,7 @@
   width: 100vw;
   color:#efdeed;
   font-family: 'Work Sans', sans-serif;
+  overflow:hidden;
 }
 
 .App canvas{
@@ -26,14 +27,14 @@ body {
 .glass h3{
   font-family: 'Noto Sans Mono', monospace;
 }
-.cyanGlass{
+.headingGlass{
   background: rgba( 255, 0, 229, 0.15 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   /*backdrop-filter: blur( 10.5px );
   -webkit-backdrop-filter: blur( 10.5px );*/
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
-  /*animation: blur-in forwards;*/
+  animation: blur-in forwards;
 }
 @keyframes blur-in {
   from {
