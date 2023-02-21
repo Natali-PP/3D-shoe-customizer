@@ -1,11 +1,30 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
   height: 100vh;
   width: 100vw;
+  color:#efdeed;
 }
 
+.App canvas{
+  width:100vw;
+  height:100vh;
+}
 body {
   padding: 0;
   margin: 0;
+}
+
+.glass {
+  background: rgba( 245, 199, 238, 0.15 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 10.5px );
+  -webkit-backdrop-filter: blur( 10.5px );
+  border-radius: 10px;
+}
+.cyanGlass{
+  background: rgba( 255, 0, 229, 0.15 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 10.5px );
+  -webkit-backdrop-filter: blur( 10.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
