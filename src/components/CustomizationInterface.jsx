@@ -20,15 +20,15 @@ import { hexToRgba, rgbaToHex } from "@uiw/color-convert";
 import Circle from "@uiw/react-color-circle";
 import "../App.css";
 import { motion, AnimatePresence } from "framer-motion";
-import Wheel from '@uiw/react-color-wheel';
 
 export default function CustomizationInterface() {
   const { isOpenModal, customization, setCustomization, setIsOpenModal } = useContext(CustomizationContext);
   //const [colorOnColorPicker, setColorOnColorPicker] = useState(customization.layerColor[`${customization.layerName}`]);
   const [colorOnColorPicker, setColorOnColorPicker] = useState("#e3d8d8");
   const [colorOnCircle, setColorOnCircle] = useState("#1A0E3E");
-  const [sliderValue, setSliderValue] = useState(0);
+  //const [sliderValue, setSliderValue] = useState(0);
   const [hexColorPicker, setHexColorPicker] = useState("#e3d8d8");
+
 
   const upperCaseFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
@@ -54,7 +54,6 @@ export default function CustomizationInterface() {
   };*/
 
   function handleColorPicker(color){
-    console.log('color hex',color)
     setHexColorPicker(color.hex);
     setCustomization((prevState) => ({
       ...prevState,
@@ -77,7 +76,6 @@ export default function CustomizationInterface() {
   };
 
   const handleSliderChange = (value, axis) => {
-    setSliderValue(value);
     setCustomization((prevState) => ({
       ...prevState,
       layerSize: {
@@ -91,6 +89,7 @@ export default function CustomizationInterface() {
   };
 
   const setDefaultValuesForLayer = (layer) => {
+
     setCustomization((prevState) => ({
       ...prevState,
       layerSize: {
@@ -104,6 +103,7 @@ export default function CustomizationInterface() {
     }));
   };
 
+  console.log('testtttttttttttttttttt', customization.layerSize[customization.layerName])
   const setDefaultValuesForModel = (layer) => {
     setCustomization((prevState) => ({
       ...prevState,
@@ -202,8 +202,7 @@ export default function CustomizationInterface() {
             //color={customization.layerColor[`${customization.layerName}`]}
             disableAlpha={"Hide"}
             //onChange={(color) => handleColorChangeOnColorPicker(color)}
-            //onClick={(e) => e.preventDefault}
-            //style={{width:'230px'}}
+            style={{width:'230px'}}
                     color={hexColorPicker}
         onChange={(color) => {handleColorPicker(color);}}
 
@@ -217,7 +216,7 @@ export default function CustomizationInterface() {
           <Text>Width</Text>
           <Slider
             aria-label="slider-height"
-            defaultValue={1}
+            value={customization.layerSize[customization.layerName].z}
             min={0}
             max={3}
             step={0.2}
@@ -232,10 +231,10 @@ export default function CustomizationInterface() {
           <Text>Height</Text>
           <Slider
             aria-label="slider-height"
-            defaultValue={1}
             min={0}
             max={3}
             step={0.2}
+            value={customization.layerSize[customization.layerName].y}
             onChange={(v) => handleSliderChange(v, "y")}
           >
             <SliderTrack>
@@ -247,10 +246,10 @@ export default function CustomizationInterface() {
           <Text>Depth</Text>
           <Slider
             aria-label="slider-width"
-            defaultValue={1}
             min={0}
             max={3}
             step={0.2}
+            value={customization.layerSize[customization.layerName].x}
             onChange={(v) => handleSliderChange(v, "x")}
           >
             <SliderTrack>
