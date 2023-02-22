@@ -15,11 +15,12 @@ import {
   IconButton
 } from "@chakra-ui/react";
 import { ChevronUpIcon } from '@chakra-ui/icons'
-import Colorful from "@uiw/react-color-colorful";
+//import Colorful from "@uiw/react-color-colorful";
 import { hexToRgba, rgbaToHex } from "@uiw/color-convert";
 import Circle from "@uiw/react-color-circle";
 import "../App.css";
 import { motion, AnimatePresence } from "framer-motion";
+import CustomColorPicker from '../components/CustomColorPicker.jsx'
 
 export default function CustomizationInterface() {
   const { isOpenModal, customization, setCustomization, setIsOpenModal } = useContext(CustomizationContext);
@@ -89,7 +90,6 @@ export default function CustomizationInterface() {
   };
 
   const setDefaultValuesForLayer = (layer) => {
-
     setCustomization((prevState) => ({
       ...prevState,
       layerSize: {
@@ -103,7 +103,6 @@ export default function CustomizationInterface() {
     }));
   };
 
-  console.log('testtttttttttttttttttt', customization.layerSize[customization.layerName])
   const setDefaultValuesForModel = (layer) => {
     setCustomization((prevState) => ({
       ...prevState,
@@ -155,7 +154,6 @@ export default function CustomizationInterface() {
   const heightSideBar = window.innerHeight>909 ? 'auto' : '80vh';
   const overflowYSideBar = window.innerHeight>909 ? 'hidden' : 'scroll';
 
-
   return (
     <Box
       style={{ position: "absolute", top: 0, right: "1%" }}
@@ -197,10 +195,11 @@ export default function CustomizationInterface() {
               handleColorChangeOnCircle(color);
             }}
           />
-          <Colorful
+
+          <CustomColorPicker
             //color={colorOnColorPicker}
             //color={customization.layerColor[`${customization.layerName}`]}
-            disableAlpha={"Hide"}
+            //disableAlpha={"Hide"}
             //onChange={(color) => handleColorChangeOnColorPicker(color)}
             style={{width:'230px'}}
                     color={hexColorPicker}
