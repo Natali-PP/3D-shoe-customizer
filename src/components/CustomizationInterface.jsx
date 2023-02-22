@@ -55,18 +55,19 @@ export default function CustomizationInterface() {
   };*/
 
   function handleColorPicker(color){
-    setHexColorPicker(color.hex);
+    setHexColorPicker(color);
     setCustomization((prevState) => ({
       ...prevState,
       layerColor: {
         ...prevState.layerColor,
-        [customization.layerName]: color.hex,
+        [customization.layerName]: color,
       },
     }));
   }
 
   const handleColorChangeOnCircle = (color) => {
     setColorOnCircle(color.hex);
+    setHexColorPicker(color.hex);
     setCustomization((prevState) => ({
       ...prevState,
       layerColor: {
