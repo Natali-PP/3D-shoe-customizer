@@ -1,14 +1,12 @@
 import { useGLTF, Bounds } from "@react-three/drei";
 import { useRef, useContext, useEffect } from "react";
 import { CustomizationContext } from "../../../context/CustomizationContex.jsx";
-import { useThree } from "@react-three/fiber";
 
 function ModelShoe({ ...props }) {
   const { nodes, materials } = useGLTF("/model.glb");
   const group = useRef();
   const { setLayerColor, setIsOpenModal, setLayerName, layerColor, innerColor, customization, setCustomization } =
     useContext(CustomizationContext);
-  const { viewport } = useThree();
 
   const handleClick = (e) => {
     e.stopPropagation();
