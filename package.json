@@ -21,6 +21,8 @@
     "leva": "^0.9.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-media": "^1.10.0",
+    "react-responsive-carousel": "^3.2.23",
     "three": "^0.149.0"
   },
   "devDependencies": {

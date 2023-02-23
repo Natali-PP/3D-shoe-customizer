@@ -1,24 +1,21 @@
 import './App.css';
-import Scene from './components/scene/Scene.jsx';
-import { useState, useRef, useContext } from 'react';
-import './styles/mainModal.css';
-import CustomizationContextProvider from './context/CustomizationContex.jsx';
-import CustomizationModal from './components/CustomizationModal.jsx';
-import {useDisclosure, Button} from '@chakra-ui/react';
-import CustomizationInterface from './components/CustomizationInterface.jsx';
+import Scene from "./components/scene/Scene.jsx";
+import CustomizationContextProvider from "./context/CustomizationContex.jsx";
+import CustomizationInterface from "./components/CustomizationInterface.jsx";
+import MobileCustomizationInterface from "./components/MobileCustomizationInterface.jsx";
+import Media from "react-media"
+
 
 function App() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
-  //const [value, setValue] = React.useState('')
   return (
     <CustomizationContextProvider>
-      <div className="App" >
+      <div className="App">
         <Scene />
-        <CustomizationInterface />
-        {/*<CustomizationModal />*/}
+        <Media queries={{ small: "(max-width: 599px)" }}>
+          {(matches) => (matches.small ? <MobileCustomizationInterface /> : <CustomizationInterface />)}
+        </Media>
       </div>
-    </CustomizationContextProvider>  
+    </CustomizationContextProvider>
   );
 }
 

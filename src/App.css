@@ -36,6 +36,12 @@ body {
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   animation: blur-in forwards;
 }
+.glassMobile{
+  background: rgba( 245, 199, 238, 0.15 );
+  backdrop-filter: blur( 10.5px );
+  -webkit-backdrop-filter: blur( 10.5px );
+
+}
 @keyframes blur-in {
   from {
     backdrop-filter: blur(0px);
