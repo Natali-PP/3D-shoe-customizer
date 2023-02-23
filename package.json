@@ -19,6 +19,7 @@
     "@uiw/react-color-circle": "^1.1.1",
     "framer-motion": "^9.0.4",
     "react": "^18.2.0",
+    "react-colorful": "^5.6.1",
     "react-dom": "^18.2.0",
     "react-media": "^1.10.0",
     "react-responsive-carousel": "^3.2.23",
