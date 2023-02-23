@@ -5,7 +5,7 @@ import { CustomizationContext } from "../../../context/CustomizationContex.jsx";
 function ModelShoe({ ...props }) {
   const { nodes, materials } = useGLTF("/model.glb");
   const group = useRef();
-  const { setLayerColor, setIsOpenModal, setLayerName, layerColor, innerColor, customization, setCustomization } =
+  const { setIsOpenModal, customization, setCustomization } =
     useContext(CustomizationContext);
 
   const handleClick = (e) => {

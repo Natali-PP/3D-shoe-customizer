@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import styled from "@emotion/styled";
 import Circle from "@uiw/react-color-circle";
@@ -16,7 +16,7 @@ const StyledColorPicker = styled(HexColorPicker)`
 `;
 
 export default function CustomColorPicker() {
-  const { isOpenModal, customization, setCustomization } = useContext(CustomizationContext);
+  const { customization, setCustomization } = useContext(CustomizationContext);
   const [colorOnCircle, setColorOnCircle] = useState("#1A0E3E");
   const [hexColorPicker, setHexColorPicker] = useState("#e3d8d8");
 

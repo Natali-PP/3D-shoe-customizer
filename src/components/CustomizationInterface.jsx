@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import { CustomizationContext } from "../context/CustomizationContex.jsx";
 import { Button, Box, Heading, Text, Stack, Flex, IconButton } from "@chakra-ui/react";
 import { ChevronUpIcon } from "@chakra-ui/icons";
-import "../App.css";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomColorPicker from "./CustomColorPicker.jsx";
 import SizeCustomizer from "./SizeCustomizer.jsx";
@@ -10,7 +9,6 @@ import SizeCustomizer from "./SizeCustomizer.jsx";
 export default function CustomizationInterface() {
   const { isOpenModal, customization, setIsOpenModal } = useContext(CustomizationContext);
 
-  const upperCaseFirstLetter = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
   const heightSideBar = window.innerHeight > 909 ? "auto" : "80vh";
   const overflowYSideBar = window.innerHeight > 909 ? "hidden" : "scroll";
 

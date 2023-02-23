@@ -1,14 +1,9 @@
 import { Canvas } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
-import { Environment, OrbitControls, useGLTF} from "@react-three/drei";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense, useRef, useContext } from "react";
+import { Environment, OrbitControls} from "@react-three/drei";
+import { Suspense } from "react";
 import ModelShoe from "./models/ModelShoe.jsx";
-import { useControls } from "leva";
-import { CustomizationContext } from "../../context/CustomizationContex.jsx";
 
 function Scene() {
-  const { onOpenModal } = useContext(CustomizationContext);
   return (
     <Canvas camera={{ position: [0, 0.5, 1.05] }}>
       <Suspense fallback={<p>Loading...</p>} />

@@ -2,7 +2,6 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { CustomizationContext } from "../context/CustomizationContex.jsx";
 import { Button, Box, Heading, Text, Stack, Flex, IconButton, useOutsideClick } from "@chakra-ui/react";
 import Circle from "@uiw/react-color-circle";
-import "../App.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import CustomColorPicker from "../components/CustomColorPicker.jsx";
@@ -11,12 +10,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 export default function MobileCustomizationInterface() {
-  const { isOpenModal, customization, setIsOpenModal, onCloseModal } = useContext(CustomizationContext);
+  const { isOpenModal, customization, setIsOpenModal } = useContext(CustomizationContext);
   const [clickedOutside, setClickedOutside] = useState(false);
   const myRef = useRef();
 
   const handleClickOutside = (e) => {
-    //console.log(myRef.current.contains(e.target))
     myRef.current.contains(e.target) ? setIsOpenModal(true) : setIsOpenModal(false);
   };
 
