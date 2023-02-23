@@ -3,9 +3,7 @@ import Scene from "./components/scene/Scene.jsx";
 import CustomizationContextProvider from "./context/CustomizationContex.jsx";
 import CustomizationInterface from "./components/CustomizationInterface.jsx";
 import MobileCustomizationInterface from "./components/MobileCustomizationInterface.jsx";
-import Media from "react-media"
-
-
+import Media from "react-media";
 function App() {
   return (
     <CustomizationContextProvider>
@@ -20,4 +18,3 @@ function App() {
 }
 
 export default App;
-
