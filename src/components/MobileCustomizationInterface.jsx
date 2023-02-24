@@ -14,16 +14,14 @@ export default function MobileCustomizationInterface() {
   const [clickedOutside, setClickedOutside] = useState(false);
   const myRef = useRef();
 
-  const handleClickOutside = (e) => {
-    myRef.current.contains(e.target) ? setIsOpenModal(true) : setIsOpenModal(false);
-  };
-
-  const handleClickInside = () => setIsOpenModal(true);
-
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  });
+    const handleClickOutside = (e) => {
+      if(myRef.current && !myRef.current.contains(e.target)) ? setIsOpenModal(true) : setIsOpenModal(false);
+    };
+    document.body.addEventListener("mousedown", handleClickOutside);
+    return () => document.body.removeEventListener("mousedown", handleClickOutside);
+  },[myRef]);
+
   return (
     <>
       <Box

@@ -45,3 +45,5 @@ $ npm run dev
 - [React color](https://uiwjs.github.io/react-color/) - A tiny color picker widget component for react apps.
 - [React Media](https://github.com/ReactTraining/react-media) - CSS media queries for React.
 - [React responsive carousel](https://github.com/leandrowd/react-responsive-carousel) - Powerful, lightweight and fully customizable carousel component for React apps.
+
+Made with ❤️  by Natalí Palacio Pastor - 2023 Argentina ⭐⭐⭐
