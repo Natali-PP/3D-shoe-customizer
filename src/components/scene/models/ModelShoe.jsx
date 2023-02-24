@@ -18,7 +18,7 @@ function ModelShoe({ ...props }) {
   };
 
   return (
-    <Bounds fit clip observe margin={0.8}>
+    <Bounds fit observe margin={0.8}>
       <group {...props} ref={group} dispose={null}>
         <mesh
           geometry={nodes.shoe.geometry}

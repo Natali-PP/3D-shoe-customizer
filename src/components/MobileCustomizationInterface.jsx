@@ -14,13 +14,14 @@ export default function MobileCustomizationInterface() {
   const [clickedOutside, setClickedOutside] = useState(false);
   const myRef = useRef();
 
+  const handleClickInside = () => setIsOpenModal(true);
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if(myRef.current && !myRef.current.contains(e.target)) ? setIsOpenModal(true) : setIsOpenModal(false);
+      (myRef.current && !myRef.current.contains(e.target)) ? setIsOpenModal(false) : null;
     };
     document.body.addEventListener("mousedown", handleClickOutside);
     return () => document.body.removeEventListener("mousedown", handleClickOutside);
-  },[myRef]);
+  });
 
   return (
     <>
@@ -52,7 +53,7 @@ export default function MobileCustomizationInterface() {
       <Box style={{ position: "absolute", bottom: 0, left: 0, right: 0, margin: "auto" }} p={3} ml={3} width="310px">
         {isOpenModal ? (
           <div ref={myRef} onClick={handleClickInside}>
-            <Carousel className="glass" swipeable={false}>
+            <Carousel className="glass" swipeable={false} showThumbs={false}>
               <Stack p={8} spacing="12px">
                 <Heading as="h3" size="sm" py={2}>
                   Layer color
